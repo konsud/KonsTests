@@ -134,3 +134,4 @@ for i in 0..<4 {
 }
 
 print(total)
+print ("New")
