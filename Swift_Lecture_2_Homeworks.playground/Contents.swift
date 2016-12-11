@@ -26,14 +26,7 @@ func Fueling(addedFuel: Double) -> (one: Double, two: Double, three: Double)
     }
     distanceBetweenFuelings = totalDistanceTraveled - distanceBetweenFuelings
     print("Distance traveled since last fueling: \(distanceBetweenFuelings) km")
-    if (totalConsumedFuel == 0)
-    {
-        totalConsumedFuel = addedFuel
-    }
-    else
-    {
-        totalConsumedFuel += addedFuel
-    }
+    totalConsumedFuel += addedFuel
     let averageFuelConsumedBetweenFuelings = (addedFuel / distanceBetweenFuelings) * 100
     print("Average fuel consumption (liters per 100km) between this fuelings and the last fueling is: \(averageFuelConsumedBetweenFuelings)/100 liters/km\n")
     return (totalConsumedFuel, distanceBetweenFuelings, averageFuelConsumedBetweenFuelings)
@@ -65,6 +58,13 @@ func pricePerKM(distanceInKM: Double, fuelConsumedInLiters: Double, fuelPricePer
     return KMprice
 }
 
+//Example use of the functions
+
+addDistance(traveledDistanceKM: 200)
+Fueling(addedFuel: 10)
+averageFuelConsumption(totalDistance: totalDistanceTraveled, totalConsumatedFuel: totalConsumedFuel)
+convertToMilesPerGalon(distanceInKM: totalDistanceTraveled, fuelConsumedInLiters: totalConsumedFuel)
+pricePerKM(distanceInKM: totalDistanceTraveled, fuelConsumedInLiters: totalConsumedFuel, fuelPricePerLiter: 2.10)
 
 
 //Homework Task 2 - Snakes and Ladders game
