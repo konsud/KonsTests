@@ -60,6 +60,7 @@ func pricePerKM(distanceInKM: Double, fuelConsumedInLiters: Double, fuelPricePer
 
 //Example use of the functions
 
+convertToMilesPerGalon(distanceInKM: 1100, fuelConsumedInLiters: 200)
 addDistance(traveledDistanceKM: 200)
 Fueling(addedFuel: 10)
 averageFuelConsumption(totalDistance: totalDistanceTraveled, totalConsumatedFuel: totalConsumedFuel)
