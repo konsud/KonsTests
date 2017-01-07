@@ -247,6 +247,54 @@ aHexagon.Perimeter()
 aHexagon.Area()
 
 
+//Task 2 - JSON converter
+
+let aDictionary = ["Phone_Gery_Nikol": "0888 111 222", "1": "A", "3": "C"]
+
+
+func convertArrayToJSON(data: Array<Any>) -> String
+{
+    var finalString: String = "{\n"
+    for element in data
+    {
+        let element1 = String(describing: element)
+        finalString += "\n   '\(element1)'"
+    }
+    finalString += "\n}"
+    return finalString
+}
+
+let aSet: Set<String> = ["1}]", "3"]
+
+func convertSetToJSON(data: Set<String>) -> String
+{
+    var finalString: String = "{\n"
+    for element in data
+    {
+        let element1 = String(describing: element)
+        finalString += "\n   '\(element1)'"
+    }
+    finalString += "\n}"
+    return finalString
+}
+
+print(convertSetToJSON(data: aSet))
+
+
+func convertDictionaryToJSON(data: Dictionary<String, String>) -> String
+{
+    var finalString: String = "{\n"
+    for (key, element) in data
+    {
+        let element1 = String(describing: element)
+        finalString += "\n  '\(key)' : '\(element1)'"
+    }
+    finalString += "\n}"
+    return finalString
+}
+
+print(convertDictionaryToJSON(data: aDictionary))
+
 //Task 3 - Calculator
 
 enum NumberType
@@ -258,35 +306,10 @@ enum NumberType
     case Hexadecimal
 }
 
-var bla1 = 156
-var bla2 = String(bla1, radix: 2)
-var bla7 = String(bla1, radix: 16)
-var bla3 = Double(bla2)
-//func summingNumbers(forNumbers: [String], inSystem: NumberType) -> String
-//{
-//    switch inSystem {
-//    case .Binary:
-//        return "Binary"
-//    case .Ternary:
-//        return "Ternary"
-//    case .Octal:
-//        return "Octal"
-//    case .Decimal:
-//        return "Decimal"
-//    case .Hexadecimal:
-//        return "Hexadecimal"
-//    default:
-//        return "Not a valid number"
-//    }
-//}
-
 var Numbers: [(num: String, numType: NumberType)] = []
-//[("150",.Decimal), ("151", .Binary), ("234235", .Hexadecimal)]
 Numbers.append((num: "1001", numType: .Binary))
 Numbers.append((num: "6071", numType: .Octal))
 Numbers.append((num: "ff0d", numType: .Hexadecimal))
-print(Numbers)
-print(Numbers[0].numType)
 
 
 func convertNumberToDecimal(num: String, numType: NumberType) -> String
@@ -324,6 +347,7 @@ func convertNumberToDecimal(num: String, numType: NumberType) -> String
     return "Invalid Number Type"
 }
 
+//Example of using the converting function
 convertNumberToDecimal(num: "9C", numType: .Hexadecimal)
 
 
@@ -355,6 +379,7 @@ func convertingNumberToBinary(num: String, numType: NumberType) -> String
     return "Invalid number type"
 }
 
+//Example of using the converting function
 convertingNumberToBinary(num: "9C", numType: .Hexadecimal)
 
 func convertingNumberToTernary(num: String, numType: NumberType) -> String
@@ -384,6 +409,7 @@ func convertingNumberToTernary(num: String, numType: NumberType) -> String
     return "Invalid number type"
 }
 
+//Example of using the converting function
 convertingNumberToTernary(num: "156", numType: .Decimal)
 
 func convertingNumberToOctal(num: String, numType: NumberType) -> String
@@ -413,6 +439,7 @@ func convertingNumberToOctal(num: String, numType: NumberType) -> String
     return "Invalid number type"
 }
 
+//Example of using the converting function
 convertingNumberToOctal(num: "9C", numType: .Hexadecimal)
 
 func convertingNumberToHex(num: String, numType: NumberType) -> String
@@ -442,6 +469,7 @@ func convertingNumberToHex(num: String, numType: NumberType) -> String
     return "Invalid number type"
 }
 
+//Example of using the converting function
 convertingNumberToHex(num: "156", numType: .Decimal)
 
 
@@ -488,12 +516,10 @@ func substractingOfNumbers(numbers: [(num: String, numType: NumberType)], inType
         if finalResult == 0
         {
             finalResult = resultToInt!
-            //finalResultDisplayed = String(finalResult)
         }
         else
         {
             finalResult = (finalResult - resultToInt!)
-            //finalResultDisplayed = String(finalResult)
         }
     }
     finalResultDisplayed = String(finalResult)
@@ -527,12 +553,10 @@ func multiplicationOfNumbers(numbers: [(num: String, numType: NumberType)], inTy
         if finalResult == 0
         {
             finalResult = resultToInt!
-            //finalResultDisplayed = String(finalResult)
         }
         else
         {
             finalResult *= resultToInt!
-            //finalResultDisplayed = String(finalResult)
         }
     }
     finalResultDisplayed = String(finalResult)
@@ -566,12 +590,10 @@ func divisionOfNumbers(numbers: [(num: String, numType: NumberType)], inType: Nu
         if finalResult == 0
         {
             finalResult = resultToDouble!
-            //finalResultDisplayed = String(finalResult)
         }
         else
         {
             finalResult  = (finalResult / resultToDouble!)
-            //finalResultDisplayed = String(finalResult)
         }
     }
     finalResultDisplayed = String(finalResult)
@@ -592,146 +614,3 @@ func divisionOfNumbers(numbers: [(num: String, numType: NumberType)], inType: Nu
 }
 
 divisionOfNumbers(numbers: Numbers, inType: .Decimal)
-
-//Task 2 - JSON converter
-
-let dic = ["Phone_Koko": "0888 143 297", "1": "A", "3": "C"]
-
-do {
-    let jsonData = try JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
-    // here "jsonData" is the dictionary encoded in JSON data
-    
-    let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
-    // here "decoded" is of type `Any`, decoded from JSON data
-    
-    // you can now cast it with the right type
-    if let dictFromJSON = decoded as? [String:String] {
-        // use dictFromJSON
-        print(dictFromJSON)
-    }
-} catch {
-    print(error.localizedDescription)
-}
-
-
-func convertToJSONArray(data: Array<Any>) -> String
-{
-    var finalString: String = "{\n"
-    for element in data
-    {
-        let element1 = String(describing: element)
-        finalString += "\n   '\(element1)'"
-    }
-    finalString += "\n}"
-    return finalString
-}
-
-let bla = [1,2,3,4,5,6,7]
-let newArray = ["Kopele","brat mu","Joro","Petkan","Na maika im","Dedo","Yavor"]
-print(bla[0])
-print(convertToJSONArray(data: newArray))
-
-let kopele: Set<String> = ["1}]", "3"]
-
-func convertSetToJSON(data: Set<String>) -> String
-{
-    var finalString: String = "{\n"
-    for element in data
-    {
-        let element1 = String(describing: element)
-        finalString += "\n   '\(element1)'"
-    }
-    finalString += "\n}"
-    return finalString
-}
-
-print(convertSetToJSON(data: kopele))
-
-
-func convertDictionaryToJSON(data: Dictionary<String, String>) -> String
-{
-    var finalString: String = "{\n"
-    for (key, element) in data
-    {
-        let element1 = String(describing: element)
-        finalString += "\n  '\(key)' : '\(element1)'"
-    }
-    finalString += "\n}"
-    return finalString
-}
-
-print(convertDictionaryToJSON(data: dic))
-
-func convertDictionaryToJSON2(data: Dictionary<String, String>) -> String
-{
-    var finalString: String = "{\n"
-    for (key, element) in data
-    {
-        let element1 = String(describing: element)
-        finalString += "\n  '\(key)' : '\(element1)'"
-    }
-    finalString += "\n}"
-    return finalString
-}
-
-
-func test(data: AnyObject) -> String
-{
-    if let testArray = data as? Array<Any> //Test the rest with a switch statement
-    {
-        for element in testArray
-        {
-            print(element)
-        }
-    }
-    if let testSet = data as? Dictionary<Int, String>
-    {
-        for element in testSet
-        {
-            print(element)
-        }
-    }
-    if let testSet = data as? Dictionary<Float, String>
-    {
-        for element in testSet
-        {
-            print(element)
-        }
-    }
-    if let testSet = data as? Dictionary<Double, String>
-    {
-        for element in testSet
-        {
-            print(element)
-        }
-    }
-    if let testSet = data as? Dictionary<Int, Int>
-    {
-        for element in testSet
-        {
-            print(element)
-        }
-    }
-    if let testSet = data as? Dictionary<Float, Int>
-    {
-        for element in testSet
-        {
-            print(element)
-        }
-    }
-    if let testSet = data as? Dictionary<Double, Int>
-    {
-        for element in testSet
-        {
-            print(element)
-        }
-    }
-    if let testSet = data as? Dictionary<Int, String>
-    {
-        for element in testSet
-        {
-            print(element)
-        }
-    }
-    return "DA"
-}
